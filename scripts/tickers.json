@@ -1,0 +1,14 @@
+[
+    {
+        "name":"HAL",
+        "price":123
+    },
+    {
+        "name":"SNOW",
+        "price":456
+    },
+    {
+        "name":"AAPL",
+        "price":789
+    }
+]
