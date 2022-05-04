@@ -1,6 +1,6 @@
 <script>
-	import Name from './components/Name.svelte';
-	import Price from './components/Price.svelte'
+	import Name from './Name.svelte';
+	import Price from './Price.svelte'
     export let name
     export let price
 	

@@ -1,75 +1,26 @@
-<!-- <script>
-    async function getUsers() {
-        let response = await fetch ('./tick.json');
-        let users = await response.json();
-        return users;
-    }
-    const promise = getUsers();
-	import Track from './Track.svelte'
-
-
-
-		let count = 0;
-
-	function handleClick() {
-		count += 1;
-	}
-	import { fade } from 'svelte/transition'
-
+<script>
+import Tracker from './components/Track.svelte'
+async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL') {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+		'x-api-key': 'yo put the key here!'
+    },
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL')
 </script>
-
-
 
 
 {#await promise}
-<p>if you see this, report it</p>
-{:then user}
-	{#each user as user}
-		<Track name={user.name} price={user.price}/>
-	{/each}
-{:catch error}
-<p class="bg-error text-error">error lol!</p>
-{/await}
-
-
-
-<button on:click={handleClick}>
-	Clicked {count} {count === 1 ? 'time' : 'times'}
-</button> -->
-
-
-<script>
-	// var options = {
-    // method: 'GET',
-    // url: 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2C%20SNOW%2C%20AAPL',
-    // params: {modules: 'defaultKeyStatistics,assetProfile'},
-    // headers: {
-    //     'x-api-key': '8gOgZjoK4a6tKZ9MjGIoZ5c51VXtsaHD59nXqyzV'
-    // }
-    // };
-
-    // fetch(options).then(function (response) {
-    //     console.log(response.data);
-    // }).catch(function (error) {
-    //     console.error(error);
-    // });
-
-var axios = require("axios").default;
-
-var options = {
-  method: 'GET',
-  url: 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2C%20SNOW%2C%20AAPL',
-  params: {modules: 'defaultKeyStatistics,assetProfile'},
-  headers: {
-    'x-api-key': '8gOgZjoK4a6tKZ9MjGIoZ5c51VXtsaHD59nXqyzV'
-  }
-};
-
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
-</script>
-
 <p>hi</p>
+{:then stock}
+			<Tracker 
+			name={stock.quoteResponse.result[0].symbol} 
+			price={stock.quoteResponse.result[0].regularMarketPrice}
+			/>
+
+{:catch error}
+{error}
+{/await}
