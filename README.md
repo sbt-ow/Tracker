@@ -2,5 +2,5 @@ mostly for pi stuff
 
 
 do like:
-  `npm install
-  npm run dev`
+  ``npm install
+  npm run dev``
