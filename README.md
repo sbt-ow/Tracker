@@ -2,5 +2,6 @@ mostly for pi stuff
 
 
 do like:
-  ``npm install
-  npm run dev``
+  `npm install`
+  and then like
+  `npm run dev`
