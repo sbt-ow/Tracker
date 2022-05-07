@@ -31,9 +31,9 @@ async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang
 		'x-api-key': 'get your own key lol'
     },
   });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
-const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL')
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL')
 
 
 
@@ -56,7 +56,17 @@ const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&s
  <!-- Real -->
 
 {#await promise}
-<p class="bg-error text-light">hi please add the key!</p>
+<p class="bg-error text-white thetop is-center">hi please add the key! it's in the app.svelte page right now until later! get the key from <a href="https://www.yahoofinanceapi.com/">this website</a> over here!</p>
+<p class="bg-error text-white is-center ">anyways yote</p>
+<div class="is-center">
+<img 
+  src="./403.jpg" 
+  alt="bedyote" 
+  width="400"
+  height="300">
+
+</div>
+
 {:then stock}
 			<Tracker
 			ticker={stock.quoteResponse.result[0].symbol}
@@ -71,6 +81,6 @@ const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&s
 			/>
 
 {:catch error}
-{error}<p class="bg-error text-light">hello this is an error D:</p>
+{error}<p class="bg-error text-light">hello this is an error D: lemme know how u got here</p>
 {/await}
 
