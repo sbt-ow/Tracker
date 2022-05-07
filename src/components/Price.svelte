@@ -2,5 +2,8 @@
     export let price
 </script>
 <div class="col-6">
-    <p class="lcd">{price}</p>
+    <!-- This is the current price -->
+    <p class="lcd">${price}</p>
+    <!--  -->
+    <p class="regulartext">Up or Down IDK</p>
 </div>

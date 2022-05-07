@@ -1,6 +1,10 @@
 <script>
-    export let name
+    export let ticker
+    export let fullName
 </script>
 <div class="col-6">
-    <p class="lcd">{name}</p>
+    <!-- Ticker of the stock -->
+    <p class="lcd">${ticker}</p>
+    <!-- Full name of the stock -->
+    <p class="regulartext">{fullName}</p>
 </div>

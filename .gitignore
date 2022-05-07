@@ -2,3 +2,4 @@
 /public/build/
 keys
 .DS_Store
+/src/App copy.svelte

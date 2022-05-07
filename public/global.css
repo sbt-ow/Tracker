@@ -1,3 +1,9 @@
+@import url(https://unpkg.com/chota@latest);
+
+:root {
+	--bg-color: #000000;
+}
+
 html, body {
 	position: relative;
 	width: 100%;
@@ -7,9 +13,10 @@ html, body {
 body {
 	color: #333;
 	margin: 0;
-	padding: 8px;
+	padding: 0px;
 	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; 
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	overflow-x: hidden;
 }
 
 a {
@@ -62,20 +69,46 @@ button:focus {
 	border-color: #666;
 }
 
-/* my own shit */
-p.lcd {
-	color: rgb(255, 0, 0);
-	font-size: larger;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+	/* my own shit */
+.lcd {
+	color: #39FF14;
+	font-size: 48px;
+	font-family: 'ds-digitalbold', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	margin-bottom: 0px;
+	margin-left: 8px;
+	filter: drop-shadow(5px 2.5px 15px #37ff14ce);
 	}
 
 	/* Dashed border */
-	hr.dashed {
-	border-top: 3px dashed rgb(0, 0, 0);
-	}
+hr.dashed {
+border-top: 1px dashed rgb(0, 0, 0);
+}
 
 	/* Solid border */
-	hr.solid {
-		border-top: 7px solid rgb(0, 0, 0);
-	}
-	
+hr.solid {
+	border-top: 7px solid rgb(0, 0, 0);
+}
+.regulartext {
+	color: #39FF14;
+	font-size: 26px;
+	font-family: 'ds-digitalbold', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	margin-bottom: 0px;
+	margin-left: 24px;
+}
+
+.clock {
+	color: #39FF14;
+	font-size: 36px;
+	font-family: 'ds-digitalbold', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	margin-bottom: 0px
+}
+
+.thetop {
+	margin-top: 36px;
+}

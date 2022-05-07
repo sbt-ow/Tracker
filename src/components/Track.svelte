@@ -1,12 +1,14 @@
 <script>
 	import Name from './Name.svelte';
 	import Price from './Price.svelte'
-    export let name
+    export let ticker
     export let price
+	export let fullName
 	
 </script>
+<hr class="dashed">
 <div class="row">
-	<Name name={name}/>
+	<Name ticker={ticker} fullName={fullName}/>
 	<Price price={price}/>
 </div>
-<hr class="dashed">
+
