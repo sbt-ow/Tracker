@@ -4,36 +4,34 @@
 import Tracker from './components/Track.svelte'
 import Time from 'svelte-time'
 // Getting the URL
-  // let Link = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols='
+  let Link = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols='
 
 // fetching the tickers
-  // async function getUsers() {
-  //   let response = await fetch('./tick.json');
-  //   let users = await response.json();
-  //   return users;
-  // }
-  // const people = getUsers();
+  async function getUsers() {
+    let response = await fetch('./tick.json');
+    let users = await response.json();
+    return users;
+  }
+  const people = getUsers();
 
 // Building the URL
-  // let text = ''
-  //   for (let i = 0; i < people.length; i++) {
-  //     text += `${people[i].name}%2C`;
-  //   }
-  // console.log(text)
+  let text = ''
+    for (let i = 0; i < people.length; i++) {
+      text += `${people[i].name}%2C`;
+    }
+  console.log(text)
 
-// console.log(people)
-// console.log(people.join());
-
-async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL') {
-  const response = await fetch(url, {
-    method: 'GET',
-    headers: {
-		'x-api-key': 'get your own key lol'
-    },
-  });
-    return response.json(); // parses JSON response into native JavaScript objects
-  }
-  const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL')
+  console.log(people)
+// async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=') {
+//   const response = await fetch(url, {
+//     method: 'GET',
+//     headers: {
+// 		'x-api-key': 'the api key'
+//     },
+//   });
+//     return response.json(); // parses JSON response into native JavaScript objects
+//   }
+//   const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=')
 
 
 
@@ -48,14 +46,14 @@ async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang
 
 <!-- For Testing -->
 
- <!-- <Tracker></Tracker>
  <Tracker></Tracker>
  <Tracker></Tracker>
- <Tracker></Tracker> -->
+ <Tracker></Tracker>
+ <Tracker></Tracker>
 
  <!-- Real -->
 
-{#await promise}
+<!-- {#await promise}
 <p class="bg-error text-white thetop is-center">hi please add the key! it's in the app.svelte page right now until later! get the key from <a href="https://www.yahoofinanceapi.com/">this website</a> over here!</p>
 <p class="bg-error text-white is-center ">anyways yote</p>
 <div class="is-center">
@@ -83,4 +81,4 @@ async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang
 {:catch error}
 {error}<p class="bg-error text-light">hello this is an error D: lemme know how u got here</p>
 {/await}
-
+ -->
