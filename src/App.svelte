@@ -12,17 +12,40 @@ import Time from 'svelte-time'
     let users = await response.json();
     return users;
   }
-  const people = getUsers();
+  const people =  getUsers();
+  getUsers().then (
+   (people) => {
+    console.log(people)
 
-// Building the URL
+// Building the Tickers
   let text = ''
-    for (let i = 0; i < people.length; i++) {
-      text += `${people[i].name}%2C`;
+  let thingsToQuery = `${people[0].name}%2C`;
+    for (let i = 1; i < 3; i++) {
+      text = `${people[i].name}%2C`;
+      thingsToQuery = thingsToQuery.concat('',text) 
     }
-  console.log(text)
+// Build the URL
+  thingsToQuery = thingsToQuery.slice(0,-3)
+  let theAPI = Link.concat(thingsToQuery)
+  console.log(theAPI)
 
-  console.log(people)
-// async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=') {
+
+  // Query API
+  async function postData(url = theAPI) {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+		'x-api-key': 'api key'
+    },
+  });
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+  const promise = postData(theAPI)
+  console.log(promise)
+   } 
+  )
+   
+// async function postData(url = theAPI) {
 //   const response = await fetch(url, {
 //     method: 'GET',
 //     headers: {
@@ -31,7 +54,7 @@ import Time from 'svelte-time'
 //   });
 //     return response.json(); // parses JSON response into native JavaScript objects
 //   }
-//   const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=')
+//   const promise = postData(theAPI)
 
 
 
@@ -46,14 +69,16 @@ import Time from 'svelte-time'
 
 <!-- For Testing -->
 
+ <!-- <Tracker></Tracker>
  <Tracker></Tracker>
  <Tracker></Tracker>
- <Tracker></Tracker>
- <Tracker></Tracker>
+ <Tracker></Tracker> -->
 
  <!-- Real -->
 
-<!-- {#await promise}
+
+
+{#await people}
 <p class="bg-error text-white thetop is-center">hi please add the key! it's in the app.svelte page right now until later! get the key from <a href="https://www.yahoofinanceapi.com/">this website</a> over here!</p>
 <p class="bg-error text-white is-center ">anyways yote</p>
 <div class="is-center">
@@ -81,4 +106,4 @@ import Time from 'svelte-time'
 {:catch error}
 {error}<p class="bg-error text-light">hello this is an error D: lemme know how u got here</p>
 {/await}
- -->
+
