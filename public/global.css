@@ -78,7 +78,8 @@ button:focus {
 	font-style: normal;
 	margin-bottom: 0px;
 	margin-left: 8px;
-	filter: drop-shadow(5px 2.5px 15px #37ff14ce);
+	/* This one below fucking sucks if you have it on a Pi :P */
+	/* filter: drop-shadow(5px 2.5px 3px #37ff14ce); */
 	}
 
 	/* Dashed border */
@@ -115,4 +116,9 @@ hr.solid {
 
 p.thetop {
 	margin-top: 9px;
+}
+
+.clock-background {
+	background-color: #14854F;
+	opacity: 100%;
 }
