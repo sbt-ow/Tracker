@@ -1,19 +1,18 @@
 [
     {
-        "name":"HAL",
-        "price":"123"
+        "name":"HAL"
     },
     {
-        "name":"SNOW",
-        "price":"456"
+        "name":"SNOW"
     },
     {
         "name":"AAPL"
-        ,
-        "price":"789"
+        
     },
     {
-        "name":"RTX",
-        "price":"112"
+        "name":"RTX"
+    },
+    {
+        "name":"TWTR"
     }
 ]

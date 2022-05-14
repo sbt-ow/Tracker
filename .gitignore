@@ -1,5 +1,5 @@
 /node_modules/
 /public/build/
 /public/keys.txt
+/public/keys.json
 .DS_Store
-/src/App copy.svelte
