@@ -1,86 +1,68 @@
 <script>
+    // Get the URL and Tickers
+import theKeysForAPI from '../public/keys.json';
+import Tickers from '../public/tick.json';
+import Tracker from './components/Track.svelte';
+import  Clock from "./components/Clock.svelte";
 
-  // Svelte Components
-import Tracker from './components/Track.svelte'
-import Time from 'svelte-time'
-// Getting the URL
-  // let Link = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols='
+const Link = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols='
+    // import apiKey from 'keys.json (make this urself)'
+const TheKey = theKeysForAPI[0].KeyForAPI
 
-// fetching the tickers
-  // async function getUsers() {
-  //   let response = await fetch('./tick.json');
-  //   let users = await response.json();
-  //   return users;
-  // }
-  // const people = getUsers();
+    // Building the Tickers
+let text = ''
+let thingsToQuery = `${Tickers[0].name}%2C`;
+        for (let i=1; i < Tickers.length; i++) {
+            text = `${Tickers[i].name}%2C`;
+            thingsToQuery = thingsToQuery.concat('',text)
+            
+        }
+    thingsToQuery = thingsToQuery.slice(0,-3)
+    // Make the Link
+let theAPI = Link.concat(thingsToQuery)
 
-// Building the URL
-  // let text = ''
-  //   for (let i = 0; i < people.length; i++) {
-  //     text += `${people[i].name}%2C`;
-  //   }
-  // console.log(text)
-
-// console.log(people)
-// console.log(people.join());
-
-async function postData(url = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL') {
+async function postData(url, apiKey) {
   const response = await fetch(url, {
     method: 'GET',
     headers: {
-		'x-api-key': 'get your own key lol'
+    'x-api-key': apiKey
     },
   });
-    return response.json(); // parses JSON response into native JavaScript objects
-  }
-  const promise = postData('https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=HAL%2CSNOW%2CAAPL')
-
-
-
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+const apiFetch = postData(theAPI, TheKey)
 </script>
-<!-- Hey this is like the top bar and clock -->
-      <Time format="hh:mm a" live="{15 * 1000}" class="clock is-center is-fixed bg-primary"/>
+
+<Clock/>
+
 <div class="row">
   <div class="col thetop">
   </div>
 </div> 
+{#await apiFetch}
+<p>loading...</p>
+    {:then stock}
 
+    {#each Tickers as {name}, i}
+        <Tracker 
+            ticker={name} 
+            fullName={stock.quoteResponse.result[i].longName} 
+            price={stock.quoteResponse.result[i].regularMarketPrice.toFixed(2)}
+            dodChange={stock.quoteResponse.result[i].regularMarketChange.toFixed(2)}
+            dodPercent={stock.quoteResponse.result[i].regularMarketChangePercent.toFixed(2)}
+        />
+    {/each}
 
-<!-- For Testing -->
+    {:catch}
 
- <!-- <Tracker></Tracker>
- <Tracker></Tracker>
- <Tracker></Tracker>
- <Tracker></Tracker> -->
-
- <!-- Real -->
-
-{#await promise}
-<p class="bg-error text-white thetop is-center">hi please add the key! it's in the app.svelte page right now until later! get the key from <a href="https://www.yahoofinanceapi.com/">this website</a> over here!</p>
-<p class="bg-error text-white is-center ">anyways yote</p>
-<div class="is-center">
-<img 
-  src="./403.jpg" 
-  alt="bedyote" 
-  width="400"
-  height="300">
-
+    <p class="bg-error text-white thetop is-center">hi please add the key! it's in the app.svelte page right now until later! get the key from <a href="https://www.yahoofinanceapi.com/">this website</a> over here!</p>
+    <p class="bg-error text-white is-center ">anyways yote</p>
+    <div class="is-center">
+    <img 
+    src="./403.jpg" 
+    alt="bedyote" 
+    width="400"
+    height="300">
 </div>
 
-{:then stock}
-			<Tracker
-			ticker={stock.quoteResponse.result[0].symbol}
-			price={stock.quoteResponse.result[0].regularMarketPrice}
-      fullName={stock.quoteResponse.result[0].longName}
-			/>
-
-			<Tracker
-			ticker="TICKER"
-			price="PRICE IN USD"
-      fullName="The Whole Damn Name"
-			/>
-
-{:catch error}
-{error}<p class="bg-error text-light">hello this is an error D: lemme know how u got here</p>
 {/await}
-
