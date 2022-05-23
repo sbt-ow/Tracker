@@ -30,6 +30,7 @@
         var UTC = now.getUTCHours();
         var UTCtwelve = now.getUTCHours();
         // This should offset by 5 hours
+            // We are in EDT btw so -4
         var ESThr = (UTC - 4);
         var ESTtwelve = (UTCtwelve - 4);
         var ESTmid = ' PM'

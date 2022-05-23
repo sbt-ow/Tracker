@@ -1,36 +1,14 @@
 <script>
+
     // Get the URL and Tickers
-import theKeysForAPI from '../public/keys.json';
+import darkMode from './scripts/darkMode'
 import Tickers from '../public/tick.json';
 import Tracker from './components/Track.svelte';
-import  Clock from "./components/Clock.svelte";
+import Clock from "./components/Clock.svelte";
+import apiFetch from './scripts/apiFetch'
+import {upDown,posNeg} from './scripts/apiValues'
 
-const Link = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols='
-    // import apiKey from 'keys.json (make this urself)'
-const TheKey = theKeysForAPI[0].KeyForAPI
-
-    // Building the Tickers
-let text = ''
-let thingsToQuery = `${Tickers[0].name}%2C`;
-        for (let i=1; i < Tickers.length; i++) {
-            text = `${Tickers[i].name}%2C`;
-            thingsToQuery = thingsToQuery.concat('',text)
-            
-        }
-    thingsToQuery = thingsToQuery.slice(0,-3)
-    // Make the Link
-let theAPI = Link.concat(thingsToQuery)
-
-async function postData(url, apiKey) {
-  const response = await fetch(url, {
-    method: 'GET',
-    headers: {
-    'x-api-key': apiKey
-    },
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
-const apiFetch = postData(theAPI, TheKey)
+darkMode()
 </script>
 
 <Clock/>
@@ -43,15 +21,16 @@ const apiFetch = postData(theAPI, TheKey)
 <p>loading...</p>
     {:then stock}
 
-    {#each Tickers as {name}, i}
-        <Tracker 
-            ticker={name} 
-            fullName={stock.quoteResponse.result[i].longName} 
-            price={stock.quoteResponse.result[i].regularMarketPrice.toFixed(2)}
-            dodChange={stock.quoteResponse.result[i].regularMarketChange.toFixed(2)}
-            dodPercent={stock.quoteResponse.result[i].regularMarketChangePercent.toFixed(2)}
-        />
-    {/each}
+        {#each Tickers as {name}, i}
+            <Tracker 
+                ticker={name} 
+                fullName={stock.quoteResponse.result[i].longName} 
+                price={stock.quoteResponse.result[i].regularMarketPrice.toFixed(2)}
+                dodChange={upDown(stock.quoteResponse.result[i].regularMarketChange.toFixed(2))}
+                dodPercent={stock.quoteResponse.result[i].regularMarketChangePercent.toFixed(2)}
+                upDown={[posNeg(stock.quoteResponse.result[i].regularMarketChange)]}
+            />
+        {/each}
 
     {:catch}
 
@@ -66,3 +45,4 @@ const apiFetch = postData(theAPI, TheKey)
 </div>
 
 {/await}
+
