@@ -65,8 +65,11 @@
             localTime + "  |  " + ESTtime ;
             setTimeout(clock,1000);
         }
-    }
-
+}
 </script>
-    <p id="currentTime" class="clock-background clock is-center is-fixed"></p>
+
+<div class="clock-background clock">
+    <div id="currentTime" class="clock-background clock is-center"/>
+</div>
+
 

@@ -69,14 +69,6 @@ hr.dashed {
 	background: linear-gradient(180deg, rgba(129,190,236,1) 5%, rgba(17,103,171,1) 95%);
 }
 
-.thetop {
-	margin-top: 36px;
-}
-
-p.thetop {
-	margin-top: 9px;
-}
-
 	/* values of the day changes */
 .up {
 	color: green;
@@ -88,3 +80,62 @@ p.thetop {
 	color: inherit;
 }
 
+
+	/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        --bg-color: rgb(37, 37, 37);
+        --bg-secondary-color: #131316;
+        --font-color: #f5f5f5;
+        --color-grey: #ccc;
+        --color-darkGrey: #777;
+    }
+
+    .tr-head {
+        color: rgb(255, 255, 255);
+        font-size: 42px;
+        margin-bottom: 0px;
+        margin-left: 8px;
+    }
+
+	.fullName {
+		color: rgb(255, 255, 255);
+		font-weight: 200;
+		font-style: italic;
+		font-size: 24px;
+		padding-top: 0%;
+	}
+
+    .tr-sub {
+        color: rgb(255, 255, 255);
+        font-size: 26px;
+        font-weight: normal;
+        font-style: normal;
+        margin-bottom: 0px;
+        margin-left: 24px;
+    }
+    .clock {
+        color: #ffffff;
+        font-family: 'Karla';
+        font-size: 36px;
+        font-weight: 200;
+        font-style: normal;
+        margin-bottom: 0px
+    }
+
+    .clock-background {
+        background: rgb(17,17,16);
+
+    }
+
+    /* color blind friendly */
+    .up {
+        color: #005AB5;
+    }
+    .down {
+        color: #DC3220;
+    }
+    .neutral {
+        color: inherit;
+    }
+}

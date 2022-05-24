@@ -21,10 +21,16 @@ async function postData(url, apiKey) {
   const response = await fetch(url, {
     method: 'GET',
     headers: {
-    'x-api-key': apiKey
+    'x-api-key': TheKey
     },
   });
-  return response.json(); // parses JSON response into native JavaScript objects
+
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error(response.json)
+  }
+
 }
 const apiFetch = postData(theAPI, TheKey)
 
